@@ -1,0 +1,12 @@
+<div class="shopping-cart-container">
+  <h4 class="shopping-cart-header">Shopping Cart</h4>
+
+  <div class="shopping-cart-body">
+    <app-cart-table
+      [columnTitles]="columnTitles"
+      [products]="productsInCart$ | async"
+      (selectEmitter)="onSelectProduct($event)"
+      (deleteEmitter)="onDeleteProduct($event)">
+    </app-cart-table>
+  </div>
+</div>
