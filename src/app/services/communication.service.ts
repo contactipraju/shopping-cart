@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Injectable }     from '@angular/core';
+import { Subject }        from 'rxjs';
 import { ICommunication } from 'src/app/models/communication';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CommunicationServiceService {
-
+export class CommunicationService {
   // Observable source
   private updateProductSource = new Subject<ICommunication>();
 

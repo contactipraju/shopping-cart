@@ -7,5 +7,5 @@ export interface IProduct {
 export interface IShoppingItem {
     selectedProduct: IProduct;
     quantity: number;
-    itemTotal: number;
+    itemTotal?: number;
 }
