@@ -1,13 +1,12 @@
 /* Add/Edit items to shopping cart */
 
 import { Component, OnInit }       from '@angular/core';
+import { Subscription }            from 'rxjs';
 
 import { IProduct, IShoppingItem } from 'src/app/models/shopping-cart';
 
 import { ShoppingCartService }     from 'src/app/services/shopping-cart.service';
-import { CommunicationServiceService }    from 'src/app/services/communication-service.service';
-
-import { Subscription } from 'rxjs';
+import { CommunicationService }    from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-edit-item',
@@ -18,15 +17,15 @@ export class EditItemComponent implements OnInit {
   item: IShoppingItem;
   products: IProduct[] = [];
 
-  dataLoaded: boolean = false;
+  dataLoaded:  boolean = false;
   editingMode: boolean = false;
   subscription: Subscription;
 
   constructor(
     private _shoppingCartService: ShoppingCartService,
-    private _communicationServiceService: CommunicationServiceService
+    private _communicationService: CommunicationService
   ) {
-    this.subscription = _communicationServiceService.updateProduct$.subscribe(
+    this.subscription = _communicationService.updateProduct$.subscribe(
       message => {
         if(message.operation === 'update') {
           this.editingMode = true;

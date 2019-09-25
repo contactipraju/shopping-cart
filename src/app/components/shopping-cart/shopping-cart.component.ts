@@ -1,13 +1,13 @@
 /* List/Delete items to shopping cart */
 
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit }       from '@angular/core';
 
 import { IShoppingItem, IProduct } from 'src/app/models/shopping-cart';
 
-import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { ShoppingCartService }     from 'src/app/services/shopping-cart.service';
 
 import { Observable } from 'rxjs';
-import { CommunicationServiceService } from 'src/app/services/communication-service.service';
+import { CommunicationService } from 'src/app/services/communication.service';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -21,7 +21,7 @@ export class ShoppingCartComponent implements OnInit {
 
   constructor(
     private _shoppingCartService: ShoppingCartService,
-    private _communicationServiceService: CommunicationServiceService) { }
+    private _communicationService: CommunicationService) { }
 
   ngOnInit() {
     this.productsInCart$ = this._shoppingCartService.cart;
@@ -30,7 +30,7 @@ export class ShoppingCartComponent implements OnInit {
 
   onSelectProduct($event) {
     console.log("ShoppingCartComponent - onProduct: ", $event);
-    this._communicationServiceService.broadcastMessage({ operation: 'update', data: Object.assign({}, $event)});
+    this._communicationService.broadcastMessage({ operation: 'update', data: Object.assign({}, $event)});
   }
 
   onDeleteProduct($event) {
